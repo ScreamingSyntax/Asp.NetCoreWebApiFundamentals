@@ -12,6 +12,10 @@ namespace Test.Mappings
                 .ReverseMap();
             CreateMap<AddRegionRequestDto, Region>();
             CreateMap<UpdateRegionRequestDto, Region>();
+            CreateMap<AddWalkRequestDto, Walk>().ReverseMap();
+            CreateMap<WalkDTO, Walk>().ReverseMap();
+            CreateMap<UpdateWalkRequestDto, Walk>();
+            CreateMap<DifficultyDto, Difficulty>().ReverseMap();
         }
     }
 

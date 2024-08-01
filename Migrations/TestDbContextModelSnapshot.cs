@@ -35,6 +35,23 @@ namespace Test.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Difficulties");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("dfb29660-7935-4381-8259-0972213424c5"),
+                            Name = "Easy"
+                        },
+                        new
+                        {
+                            Id = new Guid("36488fd7-8663-4bea-b95d-8097c645f1f1"),
+                            Name = "Medium"
+                        },
+                        new
+                        {
+                            Id = new Guid("548c1654-b287-4ea1-b2dc-10e065faa6fa"),
+                            Name = "Hard"
+                        });
                 });
 
             modelBuilder.Entity("Test.Models.Domain.Region", b =>
@@ -57,6 +74,50 @@ namespace Test.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Regions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6d65dd4d-c70e-4bc6-bf2c-939070296e87"),
+                            Code = "AKL",
+                            Name = "Aukland",
+                            RegionImageUrl = "sample-img.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("6bc1d8c7-cee9-498e-919d-fe3ef6d07bcd"),
+                            Code = "WLG",
+                            Name = "Wellington",
+                            RegionImageUrl = "wellington-img.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("fd548cc5-5a71-4e38-af0b-ff33315f02ac"),
+                            Code = "CHC",
+                            Name = "Christchurch",
+                            RegionImageUrl = "christchurch-img.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("0af39885-7618-4539-b334-4ccb9e1ee75b"),
+                            Code = "HLZ",
+                            Name = "Hamilton",
+                            RegionImageUrl = "hamilton-img.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("e2521014-b803-440c-9622-18f0b726c5bb"),
+                            Code = "TRG",
+                            Name = "Tauranga",
+                            RegionImageUrl = "tauranga-img.jpg"
+                        },
+                        new
+                        {
+                            Id = new Guid("795ec274-f743-4e3b-a835-c59ca884d7c0"),
+                            Code = "DUD",
+                            Name = "Dunedin",
+                            RegionImageUrl = "dunedin-img.jpg"
+                        });
                 });
 
             modelBuilder.Entity("Test.Models.Domain.Walk", b =>
