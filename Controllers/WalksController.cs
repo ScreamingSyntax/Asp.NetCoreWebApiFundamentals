@@ -22,9 +22,9 @@ namespace Test.Controllers
 
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery, [FromQuery] string? sortBy, [FromQuery] bool isAscending = true, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 1000)
         {
-            return Ok(Mapper.Map<List<WalkDTO>>(await WalkRepository.GetAllAsync()));
+            return Ok(Mapper.Map<List<WalkDTO>>(await WalkRepository.GetAllAsync(filterOn,filterQuery,sortBy,isAscending,pageNumber,pageSize)));
         }
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id) { 
