@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Test.CustomActionFilter;
@@ -27,8 +28,9 @@ namespace Test.Controllers
             this.dbContext = dbContext;
         }
 
-       //Get All Registions
-       [HttpGet("all")]
+        //Get All Registions
+        [Authorize(Roles = "Reader,Writer")]
+        [HttpGet("all")]
        public async Task<IActionResult> GetAll()
         {
             var regions = await regionRepository.GetAllAsync();
@@ -38,6 +40,7 @@ namespace Test.Controllers
         }
 
         //Get Single Regions
+        [Authorize(Roles = "Reader,Writer")]
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
@@ -49,6 +52,8 @@ namespace Test.Controllers
             var regionDto = mapper.Map<RegionDto>(regionDomain);
             return Ok(regionDto);
         }
+        
+        [Authorize(Roles = "Writer")]
         [ValidateModel]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
@@ -58,6 +63,8 @@ namespace Test.Controllers
                 var regionDto = mapper.Map<RegionDto>(regionDomainModel);
                 return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
         }
+
+        [Authorize(Roles = "Writer")]
         [ValidateModel]
         [HttpPut("{id:Guid}")]
         public async  Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
@@ -70,6 +77,8 @@ namespace Test.Controllers
             var regionDto = mapper.Map<RegionDto>(regionDomainModel);
             return Ok(regionDto);
         }
+
+        [Authorize(Roles = "Writer")]
         [HttpDelete("{id:Guid}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
