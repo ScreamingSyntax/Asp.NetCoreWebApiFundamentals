@@ -41,6 +41,10 @@ namespace Test.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddWalkRequestDto addWalkRequestDto)
         {
+            Walk walk = new Walk()
+            {
+
+            }
             Walk walkDomain = await WalkRepository.CreateAsync(Mapper.Map<Walk>(addWalkRequestDto));
             return CreatedAtAction(nameof(GetById), new { id = walkDomain.Id }, Mapper.Map<WalkDTO>(walkDomain));
         }
